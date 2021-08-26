@@ -9,31 +9,44 @@
 </head>
 
 <body>
-    <h1> Resta Um</h1>
-
-    <button id ="restart" class =buttons>Reset</button>
+<div id = "container">
+    <h1>Resta Um</h1>
     
+    <div id = "bar">
+        <div class = "types">
+        <span id ="englishBoard" class = "menu">Inglês <img src = "./images/englishBoardImage2.png" width ="20" height = "20" ></span>
+        <span id ="frenchBoard" class = "menu">Francês <img src = "./images/frenchBoardImage2.png" width ="20" height = "20" ></span>
+        <span id ="diamondBoard" class = "menu">Diamante <img src = "./images/diamondBoardImage2.png" width ="20" height = "20" ></span>
+        <span id ="asymmetricBoard" class = "menu">Assimétrico <img src = "./images/assymetricBoardImage2.png" width ="20" height = "20" ></span>
+    </div>
 
-<button id ="englishBoard" class = buttons>Tabuleiro Inglês</button>
-<button id ="frenchBoard" class = buttons>Tabuleiro Francês</button>
-<button id ="diamondBoard" class = buttons>Tabuleiro Diamante</button>
-<button id ="asymmetricBoard" class = buttons>Tabuleiro Assimétrico</button>
-    
-    <div id="typeGame"> Escolha seu Tabuleiro </div>
-    <div id="checkWinBox"></div>
+     <div>       <!-- <span id ="rules" class ="menu">Regras</span> -->
+        <a id ="sourceCode" target="_blank" href = "https://github.com/rguima17/Jogo-RestaUm" class ="menu">Source Code </a>
+    </div>
+     </div>
+ 
+      
+    <div id = "main-section">
+         <div id="board-container">
+            <div class = "header">
+                <span ></span> <span id ="reset">Reset</span>
+            </div>
+            <div id="game"></div>
+<div class = "info">
+            
+            <span id = "checkWinBox" ></span> 
+       <span id="typeGame">Inglês</span>
+        </div>
+    </div>
+           
+    </div>
 
 
-
-<div id = "container" >
-    <div id="game"></div>
-    
 </div>
 
 
 
 
-
-    
     <script src="./scripts.js"></script>
   
 </body>

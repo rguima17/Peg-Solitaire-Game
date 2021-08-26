@@ -4,7 +4,7 @@ let boardPositions
 let container = document.getElementById("container")
 let game = document.getElementById("game")
 let messageShow = document.getElementById("checkWinBox")
-let restartButton = document.getElementById("restart")
+let reset = document.getElementById("reset")
 let removeGame = document.getElementById("removeGame")
 let englishBoardButton = document.getElementById("englishBoard")
 let frenchBoardButton = document.getElementById("frenchBoard")
@@ -64,20 +64,19 @@ const asymmetricBoard = [
 ]
 
 
-//startGame(englishBoard)
 
 
 /**********BUTTONS*********/
 
 //Restart Button
-restartButton.onclick = function() {
+reset.onclick = function() {
+ 
   clearAllSelections()
   resetGame ()
   let numberPieces = document.getElementsByClassName("occupiedPosition")
-  messageShow.innerHTML = `${numberPieces.length} Peças` 
+  messageShow.innerHTML = `${numberPieces.length}` 
   
 }
-
 
 
 
@@ -89,6 +88,9 @@ englishBoardButton.onclick = function() {
   removeTheGame()
   createGame(englishBoard)
   typeGame.innerHTML = "Inglês"
+  game.classList.add("englishGame")
+  //game.style.width = "350px"
+  //game.style.height = "350px"
   startEvents()
 }
 
@@ -100,6 +102,9 @@ frenchBoardButton.onclick = function() {
   removeTheGame()
   createGame(frenchBoard)
   typeGame.innerHTML = "Francês"
+  game.classList.add("frenchGame")
+ // game.style.width = "350px"
+ // game.style.height = "350px"
   startEvents()
 }
 
@@ -110,6 +115,9 @@ diamondBoardButton.onclick = function() {
   removeTheGame()
   createGame(diamondBoard)
   typeGame.innerHTML = "Diamante"
+  game.classList.add("diamondGame")
+  //game.style.width = "450px"
+  //game.style.height = "450px"
   startEvents()
 }
 
@@ -120,6 +128,9 @@ asymmetricBoardButton.onclick = function() {
   removeTheGame()
   createGame(asymmetricBoard)
   typeGame.innerHTML = "Assimétrico"
+  game.classList.add("asymmetricGame")
+  //game.style.width = "400px"
+  //game.style.height = "400px"
   startEvents()
 }
 
@@ -169,7 +180,7 @@ function createGame(board) {
 
   boardPositions = document.getElementsByClassName("piece")
   let count = countPieces()
-    messageShow.innerHTML = `${count} Peças`
+    messageShow.innerHTML = `${count}`
 }
 
 
@@ -287,7 +298,7 @@ function executeJump (finalPosition) {
 
   //Count Pieces
    let count = countPieces()
-   messageShow.innerHTML = `${count} Peças`
+   messageShow.innerHTML = `${count}`
     
   //Victory
   if (count === 1) {
@@ -296,8 +307,15 @@ function executeJump (finalPosition) {
 
   //Defeat
   else if (!checkIfCanWin()) {
-       messageShow.innerHTML = "Você Perdeu..."
+    for (let i = 0; i < boardPositions.length; i++ ) {
+      if (boardPositions[i].className.indexOf("occupiedPosition") > -1)  {
+            boardPositions[i].classList.remove("occupiedPosition")
+            boardPositions[i].classList.add("youLostPosition")
+            
+      }
+       messageShow.innerHTML = "Tente Novamente."
   }
+}
 }
 
 //Check if It's possible to win
@@ -343,17 +361,25 @@ function getPieceInMiddle (startPosition, finalPosition) {
 // Function used to restart the game
 function resetGame () {
   for (let i = 0; i < boardPositions.length; i++ ) {
-    if (boardPositions[i].className.indexOf("emptyPiece") > -1 &&
+    if ((boardPositions[i].className.indexOf("emptyPiece") > -1 ) &&
         boardPositions[i].className.indexOf("zeroPosition") < 0) {
           boardPositions[i].classList.remove("emptyPiece")
           boardPositions[i].classList.add("occupiedPosition")
     }
     else if (boardPositions[i].className.indexOf("zeroPosition") > -1) {
        boardPositions[i].classList.remove("occupiedPosition")
+       boardPositions[i].classList.remove("youLostPosition")
        boardPositions[i].classList.add("emptyPiece")
-    }         
+    }
+    else if ((boardPositions[i].className.indexOf("youLostPosition") > -1 ) &&
+    boardPositions[i].className.indexOf("zeroPosition") < 0) {
+      boardPositions[i].classList.remove("youLostPosition")
+      boardPositions[i].classList.add("occupiedPosition")
+}
+             
   }    
 }
+
 
 
 // Function used to change gameboards
@@ -364,3 +390,8 @@ function removeTheGame () {
     game.removeChild(allRows[0])
   }
 }
+
+startGame(englishBoard)
+
+
+
