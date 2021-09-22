@@ -1,74 +1,124 @@
-html, body {
-  font-family: Arial, sans-serif;
-  color:white;
-  /* background: rgb(29, 29, 29) ; */
-  background:black;
- 
- 
+:root {
+  --background:black;
+  --color-word:white;
 }
 
-h1 {
- 
-  color:white;
-  font-size:2.4rem;
-  /* width:50%; */
-  /* width:100%; */
-  /* float:left; */
-  /* margin-top:5px;
-  margin-bottom:10px; */
-  /* margin-left:50%; */
-  margin: 10px auto;
-  text-align:center;
-  /* border-bottom:1.5px solid gray; */
- 
-} 
 
-
-
-#bar {
-  width:100%;
-  margin:5px;
-  border-top:1.5px solid gray;
-  border-bottom:1.5px solid gray;
-  padding-top:6px; 
-  padding-bottom:6px;
-  margin-bottom:15px; 
-  white-space:nowrap;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  
-
+body {
+  background-color: var(--background);
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
 }
 
-.menu {
-  font-size:1.1rem;
-  margin:15px 20px 20px 20px;
+h2 {
+font-style: oblique;
+}
+
+nav {
+  margin-bottom:20px;
+  padding: 0 20px;
+   display:flex;
+   justify-content: space-between;
+   align-items: center;
+   min-height:8vh;
+   background-color:black;
+   border-bottom: 0.5px solid white
+}
+
+.logo {
+  color:var(--color-word);
+  text-transform: uppercase;
+  letter-spacing:5px;
+}
+
+.nav-links {
+  display:flex;
+ justify-content: space-around;
+  width:60%;
+}
+
+@media screen and (max-width:1150px) {
+  .nav-links {
+        width:74%;
+  }       
+}
+
+.nav-links a {
+  color:var(--color-word);
+   text-decoration: none;
+   text-transform: uppercase;
+}
+
+.nav-links li {
+  list-style: none;
+  color:white;
+  text-transform: uppercase;
   cursor:pointer;
-
+  letter-spacing: 1px;
+  font-style: oblique;
 }
 
 
-a {
-  text-decoration:none;
-  color:white;
+.burger {
+  display:none;
+  cursor:pointer;
+}
+
+.burger div{
+  width:25px;
+  height:3px;
+  background-color:white;
+  margin:5px;
+}
+
+
+@media screen and (max-width:850px) {
+  body {
+      overflow-x:hidden;
+  }
+
+  .nav-links {
+      margin-top: 0;
+        position:absolute;
+        right:0px;
+        height: 92vh;
+        top:8vh;
+        background-color:black;
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        width:100%;
+        visibility:hidden;
+  } 
+
+  .burger {
+      display:block;
+      
+  }
+  .nav-active {
+    visibility: visible
+  }
 
 }
 
-#main-section  {
-    
-  width:100%;
-  float:left
+.toggle .line1{
+transform:rotate(-45deg) translate(-5px,6px)
+}
+.toggle .line2{
+opacity:0;
+}
+.toggle .line3{
+transform:rotate(45deg) translate(-5px,-6px)
+}
 
-}    
+img {
+  height:18.55px;
 
-#board-container {
-  width:800px;
-  margin:auto;
-  
 }
 
 #game {
+  
     margin:auto;
     border:1px solid rgb(0, 0, 0);
     padding-bottom:5px;
@@ -77,118 +127,150 @@ a {
     border-top:none;
 }    
 
-
-  
-
 .boardRow {
   text-align:center;
-  height:58px;
-  
+  height:9vh;
 
-}
-
-.header {
-    display:flex;
-    justify-content: space-between;
-    padding-right:80px;
-    background: black;
-    border:1px solid rgb(0, 0, 0);
-    border-bottom:none;
-    
-}
-
-#reset {
-  /* padding-right:20px;  */
-  font-size:1rem;
-  /* padding-top:10px; */
-  cursor:pointer;
-  padding:10px;
-  font-style: italic;
-  /* border: 1px solid white; */
-  /* background:rgb(0, 3, 167); */
-  background: linear-gradient(20deg, rgb(0, 0, 59), rgb(0, 21, 255));
-}
-
-
-
-.info {
-  display:flex;
-  justify-content: space-between;
-  background: black;
-  border:1px solid rgb(0, 0, 0);
-  border-top:none;
-  padding-right:70px;
 }
 
 .pieceContainer {
-  height:60px;
+  height:9vh;
   display:inline-block;
-  width:60px;
-  padding:3px;
+  width:9vh;
+  padding:4px;
+}
+
+
+@media screen and (max-width:750px) {
+  .pieceContainer {
+        height: 8vh;
+        width: 8vh;
+        padding:1px;
+  }   
+  .boardRow {
+    text-align:center;
+    height:9vh;
+  }
+}
+
+@media screen and (max-width:623px) {
+  .pieceContainer {
+        height: 7vh;
+        width: 7vh;
+        padding:1px;
+     
+  }   
+  
+  .boardRow {
+    text-align:center;
+    height:8vh;
+  }
+
+  nav {
+    margin-bottom:60px;
+  }
+}
+
+@media screen and (max-width:540px) {
+  .pieceContainer {
+        height: 5vh;
+        width: 5vh;
+        padding:1px;
+  }   
+  
+  .boardRow {
+    text-align:center;
+    height:6vh;
+  }
+
+  nav {
+    margin-bottom:80px;
+  }
+}
+
+
+@media screen and (max-width:400px) {
+  .pieceContainer {
+        height: 4.6vh;
+        width: 4.6vh;
+        padding:1px;
+  } 
+  
+  
+  
+  .boardRow {
+    text-align:center;
+    height:5vh;
+
+  }
+
+  nav {
+    margin-bottom:90px;
+    
+  }
+}
+
+
+@media screen and (max-width:370px) {
+  .boardRow {
+    text-align:center;
+    width:370px;
+
+  }
 }
 
 .piece {
-  width: 78%;
-  height: 78%;
+  width: 82%;
+  height: 82%;
   border-radius: 50%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: auto;
-  margin-bottom: auto;
-  
+  margin: auto;
+
 }
 
-img {
-  margin-left:5px;
-  padding:0;
-  
+.occupiedPosition {
+    /* background: radial-gradient(circle at 80% 80%, rgb(0, 0, 59), rgb(0, 21, 255)); */
+    background: radial-gradient(circle at 80% 80%, rgb(16, 16, 58), rgb(39, 57, 255));
 }
 
-  #checkWinBox {
-    font-size:1.3rem;
-    font-style: italic;
-    width: 420px;
-    top:50px;
-    
-    color: white;
-    padding-left:100px;
-
-    
-  }
-
-
-  .occupiedPosition {
-    background: radial-gradient(circle at 38px 38px, rgb(0, 0, 59), rgb(0, 21, 255));
-  }
-
-  .youLostPosition {
-    background: radial-gradient(circle at 38px 38px, rgb(59, 0, 0), rgb(255, 0, 0));
-  }
+.youLostPosition {
+    background: radial-gradient(circle at 80% 80%, rgb(59, 0, 0), rgb(255, 0, 0));
+}
   
-  .emptyPiece {
-    background: radial-gradient(circle at 38px 38px, #303535, #cedfdf)
-  }
+.emptyPiece {
+    background: radial-gradient(circle at 80% 80%, #303535, #cedfdf)
+}   
   
-  .occupiedPosition.selected {
+.occupiedPosition.selected {
     box-shadow: 0px 0px 2px 3px rgb(247, 0, 255);
-  }
+}
   
-  .validJump {
-    background: radial-gradient(circle at 38px 38px, #094d00, #1eff00)
-  }
+.validJump {
+    background: radial-gradient(circle at 80% 80%, #094d00, #1eff00)
+}
 
-
-  #typeGame {
+#typeGame {
     font-size:1rem;
     font-style: italic;
     padding-right:15px;
     padding-bottom:3px;
-   
 
-  }
+}
 
+.hide {
+    visibility: hidden;
+}
 
+.info {
+  background-color: black;
+}
 
-/* .hide {
-  visibility: hidden;
-} */
+#reset {
+  padding-left: 60%;
+  font-size:1.1rem;
+  font-style: italic;
+  margin: 2rem;
+  letter-spacing: 0.2rem;
+  color:white;
+  cursor:pointer;
+ 
+}

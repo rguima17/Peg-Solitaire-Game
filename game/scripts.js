@@ -10,8 +10,13 @@ let englishBoardButton = document.getElementById("englishBoard")
 let frenchBoardButton = document.getElementById("frenchBoard")
 let diamondBoardButton = document.getElementById("diamondBoard")
 let asymmetricBoardButton = document.getElementById("asymmetricBoard")
+let triBoardButton = document.getElementById("triBoard")
 let allRows = document.getElementsByClassName("boardRow")
 let typeGame = document.getElementById("typeGame")
+const burger = document.querySelector(".burger");
+const nav = document.querySelector(".nav-links");
+const navLinks = document.querySelectorAll(".nav-links li")
+
 
 const englishBoard = [
   [null, null, "fill",  "fill", "fill", null,  null], 
@@ -22,7 +27,6 @@ const englishBoard = [
   [null, null, "fill", "fill", "fill", null,   null], 
   [null, null, "fill", "fill", "fill", null,   null]
 ]
-
 
 const frenchBoard = [
   
@@ -72,6 +76,13 @@ const triBoard = [
 
 ]
 
+/* Toggle NavBar */
+
+burger.onclick = function () {
+  nav.classList.toggle("nav-active")
+  burger.classList.toggle("toggle");
+}
+
 
 /**********BUTTONS*********/
 
@@ -86,70 +97,83 @@ reset.onclick = function() {
 }
 
 
-
 // Change Boards
 englishBoardButton.onclick = function() {
     if (typeGame.innerHTML === "Inglês"){
-     return
+     return null
   }
+
   removeTheGame()
   createGame(englishBoard)
   typeGame.innerHTML = "Inglês"
-  game.classList.add("englishGame")
-  //game.style.width = "350px"
-  //game.style.height = "350px"
   startEvents()
+  nav.classList.remove("nav-active")
+  burger.classList.remove("toggle")
+
 }
 
 
 frenchBoardButton.onclick = function() {
   if (typeGame.innerHTML === "Francês"){
-    return
+    return null
   }
   removeTheGame()
   createGame(frenchBoard)
   typeGame.innerHTML = "Francês"
-  game.classList.add("frenchGame")
- // game.style.width = "350px"
- // game.style.height = "350px"
   startEvents()
+  nav.classList.remove("nav-active")
+  burger.classList.remove("toggle")
 }
+
 
 diamondBoardButton.onclick = function() {
   if (typeGame.innerHTML === "Diamante"){
-    return
+    return null
   }
   removeTheGame()
   createGame(diamondBoard)
   typeGame.innerHTML = "Diamante"
-  game.classList.add("diamondGame")
-  //game.style.width = "450px"
-  //game.style.height = "450px"
   startEvents()
+  nav.classList.remove("nav-active")
+  burger.classList.remove("toggle")
+
 }
 
 asymmetricBoardButton.onclick = function() {
   if (typeGame.innerHTML === "Assimétrico"){
-    return
+    return null
   }
   removeTheGame()
   createGame(asymmetricBoard)
   typeGame.innerHTML = "Assimétrico"
-  game.classList.add("asymmetricGame")
-  //game.style.width = "400px"
-  //game.style.height = "400px"
   startEvents()
+  nav.classList.remove("nav-active")
+  burger.classList.remove("toggle")
+
 }
 
+
+triBoardButton.onclick = function() {
+  if (typeGame.innerHTML === "Triangular"){
+   return null
+}
+removeTheGame()
+createGame(triBoard)
+typeGame.innerHTML = "Triangular"
+for (i = 0; i<5; i++ ){
+  allRows[i].classList.add(`row${i}`)
+}
+startEvents()
+nav.classList.remove("nav-active")
+burger.classList.remove("toggle")
+}
 
 
 // Function to create and start a game
 function startGame(board) {
   createGame(board);
-
   startEvents()
 }
-
 
 
 //Create the Game
@@ -260,6 +284,34 @@ function highlightValidJumps(startPosition) {
 // Check if the jump is valid
 function jumpIsValid(startPosition, finalPosition) {
 
+  if (allRows.length === 5) {
+
+    return !((finalPosition.className.indexOf("emptyPiece") < 0) || //Check if Empty
+
+        //Check if in same column or row
+        (!(startPosition["data-row"] === finalPosition["data-row"] || 
+        startPosition["data-column"] === finalPosition["data-column"] ||
+        
+        
+        (Math.abs(startPosition["data-row"] - finalPosition["data-row"]) === 2 &&
+        Math.abs(startPosition["data-column"] - finalPosition["data-column"]) === 2)
+        
+        
+        )) ||
+
+        //Check if distance between start and final position is 2
+        (Math.abs(startPosition["data-row"] - finalPosition["data-row"]) !== 2 && 
+        Math.abs(startPosition["data-column"] - finalPosition["data-column"]) !== 2) ||
+
+       //Check if there is a piece in between
+        (getPieceInMiddle(startPosition, finalPosition).className.indexOf("occupiedPosition") < 0)
+    )
+
+
+  }
+
+  else {
+
   return !((finalPosition.className.indexOf("emptyPiece") < 0) || //Check if Empty
 
         //Check if in same column or row
@@ -274,7 +326,7 @@ function jumpIsValid(startPosition, finalPosition) {
         (getPieceInMiddle(startPosition, finalPosition).className.indexOf("occupiedPosition") < 0)
     )
 }
-
+}
 
 //Execute the Jump
 function executeJump (finalPosition) {
@@ -349,7 +401,18 @@ function getPieceInMiddle (startPosition, finalPosition) {
     colMiddle = (startPosition["data-column"] > finalPosition["data-column"] ? 
     startPosition["data-column"] - 1 : finalPosition["data-column"] - 1)
   } 
-  else {
+
+
+  else if (Math.abs(startPosition["data-row"] - finalPosition["data-row"]) === 2 &&
+  Math.abs(startPosition["data-column"] - finalPosition["data-column"]) === 2) {
+    rowMiddle = (startPosition["data-row"] > finalPosition["data-row"] ? 
+    startPosition["data-row"] - 1 : finalPosition["data-row"] - 1)
+    colMiddle = (startPosition["data-column"] > finalPosition["data-column"] ? 
+    startPosition["data-column"] - 1 : finalPosition["data-column"] - 1)
+
+  }
+
+  else  {
     colMiddle = startPosition["data-column"];
     rowMiddle = (startPosition["data-row"] > finalPosition["data-row"] ? 
     startPosition["data-row"] - 1 : finalPosition["data-row"] - 1)
@@ -392,8 +455,12 @@ function resetGame () {
 // Function used to change gameboards
 function removeTheGame () {
   
-  let m = allRows.length  
+
+  allRows.className = ""
+  let m = allRows.length 
+ 
   for (let i = 0; i < m;  i++ ){
+    
     game.removeChild(allRows[0])
   }
 }
