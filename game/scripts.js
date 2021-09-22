@@ -63,7 +63,14 @@ const asymmetricBoard = [
 
 ]
 
+const triBoard = [
+  [0, null, null,  null, null], 
+  ["fill", "fill", null,  null, null], 
+  ["fill", "fill", "fill",  null, null],
+  ["fill", "fill", "fill",  "fill", null], 
+  ["fill","fill","fill","fill", "fill"]
 
+]
 
 
 /**********BUTTONS*********/
