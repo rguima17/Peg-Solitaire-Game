@@ -1,207 +1,5 @@
-<<<<<<< HEAD:styles.css
-html, body {
-  font-family: Arial, sans-serif;
-  color:white;
-  /* background: rgb(29, 29, 29) ; */
-  background:black;
- 
- 
-}
-
-h1 {
- 
-  color:white;
-  font-size:2.4rem;
-  /* width:50%; */
-  /* width:100%; */
-  /* float:left; */
-  /* margin-top:5px;
-  margin-bottom:10px; */
-  /* margin-left:50%; */
-  margin: 10px auto;
-  text-align:center;
-  /* border-bottom:1.5px solid gray; */
- 
-} 
-
-
-
-#bar {
-  width:100%;
-  margin:5px;
-  border-top:1.5px solid gray;
-  border-bottom:1.5px solid gray;
-  padding-top:6px; 
-  padding-bottom:6px;
-  margin-bottom:15px; 
-  white-space:nowrap;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  
-
-}
-
-.menu {
-  font-size:1.1rem;
-  margin:15px 20px 20px 20px;
-  cursor:pointer;
-
-}
-
-
-a {
-  text-decoration:none;
-  color:white;
-
-}
-
-#main-section  {
-    
-  width:100%;
-  float:left
-
-}    
-
-#board-container {
-  width:800px;
-  margin:auto;
-  
-}
-
-#game {
-    margin:auto;
-    border:1px solid rgb(0, 0, 0);
-    padding-bottom:5px;
-    background:black;
-    border-bottom:none;
-    border-top:none;
-}    
-
-
-  
-
-.boardRow {
-  text-align:center;
-  height:58px;
-  
-
-}
-
-.header {
-    display:flex;
-    justify-content: space-between;
-    padding-right:80px;
-    background: black;
-    border:1px solid rgb(0, 0, 0);
-    border-bottom:none;
-    
-}
-
-#reset {
-  /* padding-right:20px;  */
-  font-size:1rem;
-  /* padding-top:10px; */
-  cursor:pointer;
-  padding:10px;
-  font-style: italic;
-  /* border: 1px solid white; */
-  /* background:rgb(0, 3, 167); */
-  background: linear-gradient(20deg, rgb(0, 0, 59), rgb(0, 21, 255));
-}
-
-
-
-.info {
-  display:flex;
-  justify-content: space-between;
-  background: black;
-  border:1px solid rgb(0, 0, 0);
-  border-top:none;
-  padding-right:70px;
-}
-
-.pieceContainer {
-  height:60px;
-  display:inline-block;
-  width:60px;
-  padding:3px;
-}
-
-.piece {
-  width: 78%;
-  height: 78%;
-  border-radius: 50%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: auto;
-  margin-bottom: auto;
-  
-}
-
-img {
-  margin-left:5px;
-  padding:0;
-  
-}
-
-  #checkWinBox {
-    font-size:1.3rem;
-    font-style: italic;
-    width: 420px;
-    top:50px;
-    
-    color: white;
-    padding-left:100px;
-
-    
-  }
-
-
-  .occupiedPosition {
-    background: radial-gradient(circle at 38px 38px, rgb(0, 0, 59), rgb(0, 21, 255));
-  }
-
-  .youLostPosition {
-    background: radial-gradient(circle at 38px 38px, rgb(59, 0, 0), rgb(255, 0, 0));
-  }
-  
-  .emptyPiece {
-    background: radial-gradient(circle at 38px 38px, #303535, #cedfdf)
-  }
-  
-  .occupiedPosition.selected {
-    box-shadow: 0px 0px 2px 3px rgb(247, 0, 255);
-  }
-  
-  .validJump {
-    background: radial-gradient(circle at 38px 38px, #094d00, #1eff00)
-  }
-
-
-  #typeGame {
-    font-size:1rem;
-    font-style: italic;
-    padding-right:15px;
-    padding-bottom:3px;
-   
-
-  }
-
-
-
-/* .hide {
-  visibility: hidden;
-} */
-=======
-:root {
-  --background:black;
-  --color-word:white;
-}
-
-
 body {
-  background-color: var(--background);
+  background-color: black;
   margin:0;
   padding:0;
   box-sizing: border-box;
@@ -223,7 +21,7 @@ nav {
 }
 
 .logo {
-  color:var(--color-word);
+  color:white;
   text-transform: uppercase;
   letter-spacing:5px;
 }
@@ -241,7 +39,7 @@ nav {
 }
 
 .nav-links a {
-  color:var(--color-word);
+  color:white;
    text-decoration: none;
    text-transform: uppercase;
 }
@@ -469,4 +267,3 @@ img {
   cursor:pointer;
  
 }
->>>>>>> 3e106c15d5435faff794fb2353e9ed96bff9bdf4:game/styles.css
