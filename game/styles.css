@@ -1,11 +1,6 @@
-:root {
-  --background:black;
-  --color-word:white;
-}
-
 
 body {
-  background-color: var(--background);
+  background-color: black;
   margin:0;
   padding:0;
   box-sizing: border-box;
@@ -27,7 +22,7 @@ nav {
 }
 
 .logo {
-  color:var(--color-word);
+  color:white;
   text-transform: uppercase;
   letter-spacing:5px;
 }
@@ -45,7 +40,7 @@ nav {
 }
 
 .nav-links a {
-  color:var(--color-word);
+  color:white;
    text-decoration: none;
    text-transform: uppercase;
 }
